@@ -3,8 +3,8 @@
 
 using namespace std; // Использование стандартного пространства имен
 
-int main() {
-
+int main()
+{
     setlocale(LC_ALL, "RUS");
     Stack<int> stack;
     int number;
@@ -12,9 +12,11 @@ int main() {
     cout << "Введите последовательность чисел (0 для завершения):" << endl;
 
     // Чтение чисел, пока не будет введен 0
-    while (true) {
+    while (true) 
+    {
         cin >> number;
-        if (number == 0) {
+        if (number == 0) 
+        {
             break;
         }
         stack.push(number); // Добавление всех введенных чисел в стек
@@ -23,9 +25,11 @@ int main() {
     cout << "Положительные числа в обратном порядке:" << endl;
 
     // Извлечение и вывод положительных чисел в обратном порядке
-    while (stack.count() > 0) {
+    while (stack.count() > 0) 
+    {
         int value = stack.pop();
-        if (value > 0) {
+        if (value > 0) 
+        {
             cout << value << endl; // Вывод только положительных чисел
         }
     }

@@ -1,16 +1,19 @@
-#pragma once
+п»ї#pragma once
 
 #include <stdexcept>
 
+/// <summary>
+/// РљР»Р°СЃСЃ РґР»СЏ СЂРµР°Р»РёР·Р°С†РёРё СЃС‚РµРєР°.
+/// </summary>
 template <typename T>
 class Stack {
 private:
-    T* elements;      // Указатель на динамический массив
-    int capacity;     // Вместимость стека
-    int top;          // Индекс верхнего элемента стека
+    T* elements;
+    int capacity;
+    int top;
 
-    // Увеличивает вместимость стека
-    void resize(int newCapacity) {
+    void resize(int newCapacity)
+    {
         T* newElements = new T[newCapacity];
         for (int i = 0; i < top; i++) {
             newElements[i] = elements[i];
@@ -21,45 +24,74 @@ private:
     }
 
 public:
-    Stack() : capacity(10), top(0) {
-        elements = new T[capacity]; // Инициализация динамического массива
+    /// <summary>
+    /// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ.
+    /// </summary>
+    Stack() : capacity(10), top(0)
+    {
+        elements = new T[capacity];
     }
 
-    ~Stack() {
-        delete[] elements; // Освобождение памяти
+    /// <summary>
+    /// Р”РµСЃС‚СЂСѓРєС‚РѕСЂ.
+    /// </summary>
+    ~Stack()
+    {
+        delete[] elements;
     }
 
-    // Добавление элемента на вершину стека
-    void push(T value) {
+    /// <summary>
+    /// Р”РѕР±Р°РІР»РµРЅРёРµ СЌР»РµРјРµРЅС‚Р° РЅР° РІРµСЂС€РёРЅСѓ СЃС‚РµРєР°.
+    /// </summary>
+    /// <param name="value">Р­Р»РµРјРµРЅС‚, РєРѕС‚РѕСЂС‹Р№ РЅСѓР¶РЅРѕ РґРѕР±Р°РІРёС‚СЊ РІ СЃС‚РµРє.</param>
+    void push(T value)
+    {
         if (top == capacity) {
-            resize(capacity * 2); // Увеличение вместимости при необходимости
+            resize(capacity * 2);
         }
         elements[top++] = value;
     }
 
-    // Извлечение элемента с вершины стека и возвращение его значения
-    T pop() {
+    /// <summary>
+    /// РР·РІР»РµС‡РµРЅРёРµ СЌР»РµРјРµРЅС‚Р° СЃ РІРµСЂС€РёРЅС‹ СЃС‚РµРєР° Рё РІРѕР·РІСЂР°С‰РµРЅРёРµ РµРіРѕ Р·РЅР°С‡РµРЅРёСЏ.
+    /// </summary>
+    /// <returns>Р­Р»РµРјРµРЅС‚ СЃ РІРµСЂС€РёРЅС‹ СЃС‚РµРєР°.</returns>
+    /// <exception cref="std::out_of_range">Р’С‹Р±СЂР°СЃС‹РІР°РµС‚СЃСЏ, РµСЃР»Рё СЃС‚РµРє РїСѓСЃС‚.</exception>
+    T pop()
+    {
         if (top == 0) {
             throw std::out_of_range("Stack is empty");
         }
         return elements[--top];
     }
 
-    // Возвращение элемента находящегося на вершине стека
-    T peek() {
+    /// <summary>
+    /// Р’РѕР·РІСЂР°С‰РµРЅРёРµ СЌР»РµРјРµРЅС‚Р°, РЅР°С…РѕРґСЏС‰РµРіРѕСЃСЏ РЅР° РІРµСЂС€РёРЅРµ СЃС‚РµРєР°.
+    /// </summary>
+    /// <returns>Р­Р»РµРјРµРЅС‚ СЃ РІРµСЂС€РёРЅС‹ СЃС‚РµРєР°.</returns>
+    /// <exception cref="std::out_of_range">Р’С‹Р±СЂР°СЃС‹РІР°РµС‚СЃСЏ, РµСЃР»Рё СЃС‚РµРє РїСѓСЃС‚.</exception>
+    T peek()
+    {
         if (top == 0) {
             throw std::out_of_range("Stack is empty");
         }
         return elements[top - 1];
     }
 
-    // Возвращение количества элементов в коллекции
-    int count() {
+    /// <summary>
+    /// Р’РѕР·РІСЂР°С‰РµРЅРёРµ РєРѕР»РёС‡РµСЃС‚РІР° СЌР»РµРјРµРЅС‚РѕРІ РІ СЃС‚РµРєРµ.
+    /// </summary>
+    /// <returns>РљРѕР»РёС‡РµСЃС‚РІРѕ СЌР»РµРјРµРЅС‚РѕРІ РІ СЃС‚РµРєРµ.</returns>
+    int count()
+    {
         return top;
     }
 
-    // Удаление всех элементов из коллекции
-    void clear() {
-        top = 0; // Сбрасывание индекса верхнего элемента
+    /// <summary>
+    /// РЈРґР°Р»РµРЅРёРµ РІСЃРµС… СЌР»РµРјРµРЅС‚РѕРІ РёР· СЃС‚РµРєР°.
+    /// </summary>
+    void clear()
+    {
+        top = 0;
     }
 };
