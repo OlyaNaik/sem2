@@ -143,6 +143,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="framework.h" />
+    <ClInclude Include="queue.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="stack.h" />
   </ItemGroup>
