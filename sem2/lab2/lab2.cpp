@@ -111,7 +111,7 @@ int main()
 
     do
     {
-        choice = displayMenu(); // Получение выбора пользователя
+        choice = displayMenu();
             switch (choice)
             {
             case 1: // Добавление элемента
