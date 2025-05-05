@@ -2,11 +2,14 @@
 
 #include <stdexcept>
 
+using namespace std;
+
 /// <summary>
 /// Класс для реализации стека.
 /// </summary>
 template <typename T>
-class Stack {
+class Stack
+{
 private:
     T* elements;
     int capacity;
@@ -56,11 +59,11 @@ public:
     /// Извлечение элемента с вершины стека и возвращение его значения.
     /// </summary>
     /// <returns>Элемент с вершины стека.</returns>
-    /// <exception cref="std::out_of_range">Выбрасывается, если стек пуст.</exception>
+    /// <exception cref="out_of_range">Выбрасывается, если стек пуст.</exception>
     T pop()
     {
         if (top == 0) {
-            throw std::out_of_range("Stack is empty");
+            throw out_of_range("Stack is empty");
         }
         return elements[--top];
     }
@@ -69,11 +72,11 @@ public:
     /// Возвращение элемента, находящегося на вершине стека.
     /// </summary>
     /// <returns>Элемент с вершины стека.</returns>
-    /// <exception cref="std::out_of_range">Выбрасывается, если стек пуст.</exception>
+    /// <exception cref="out_of_range">Выбрасывается, если стек пуст.</exception>
     T peek()
     {
         if (top == 0) {
-            throw std::out_of_range("Stack is empty");
+            throw out_of_range("Stack is empty");
         }
         return elements[top - 1];
     }
