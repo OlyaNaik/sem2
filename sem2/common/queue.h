@@ -3,7 +3,7 @@
 #include <iostream>
 #include <stdexcept>
 
-using namespace std; // Добавлено пространство имен
+using namespace std;
 
 /// <summary>
 /// Класс для реализации очереди.
