@@ -3,6 +3,8 @@
 #include <iostream>
 #include <stdexcept>
 
+using namespace std; // Добавлено пространство имен
+
 /// <summary>
 /// Класс для реализации очереди.
 /// </summary>
@@ -55,7 +57,7 @@ public:
     /// <exception cref="std::out_of_range">Выбрасывается, если очередь пуста.</exception>
     T unqueue() {
         if (!front) {
-            throw std::out_of_range("Queue is empty");
+            throw out_of_range("Queue is empty");
         }
         Node* temp = front;
         T returnValue = front->data;
