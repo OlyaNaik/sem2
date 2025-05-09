@@ -1,8 +1,5 @@
 ﻿#pragma once
 
-#ifndef QUEUE_H
-#define QUEUE_H
-
 #include <iostream>
 #include <stdexcept>
 
@@ -96,5 +93,3 @@ public:
         return size == 0;
     }
 };
-
-#endif // QUEUE_H
