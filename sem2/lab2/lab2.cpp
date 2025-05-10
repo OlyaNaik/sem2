@@ -30,11 +30,13 @@ void insertBeforeNegatives(Queue<T>& q)
     for (int i = 0; i < originalSize; ++i)
     {
         T value = q.unqueue();
-        q.queue(value); // Возвращение элемента обратно в очередь
+
+        // Вставка 1 перед отрицательным числом
         if (value < 0)
         {
-            q.queue(1); // Вставка 1 перед отрицательным числом
+            q.queue(1); // Вставка 1
         }
+        q.queue(value); // Возвращение элемента обратно в очередь
     }
 }
 
