@@ -27,7 +27,7 @@ void removeNegatives(CycleList<int>& list) {
 
 int main() {
     setlocale(LC_ALL, "RUS");
-    CycleList<int> queue; // Создаем экземпляр циклического списка
+    CycleList<int> queue; // Создан экземпляр циклического списка
     int choice, value, index;
 
     do {
