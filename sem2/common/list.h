@@ -25,6 +25,30 @@ private:
     Node* tail;
     int size;
 
+    Node* getNode(int index) const
+    {
+        if (index < 0 || index >= size) throw std::out_of_range("Index out of range");
+
+        Node* current;
+        if (index < size / 2)
+        {
+            current = head;
+            for (int i = 0; i < index; i++)
+            {
+                current = current->next;
+            }
+        }
+        else
+        {
+            current = tail;
+            for (int i = size - 1; i > index; i--)
+            {
+                current = current->prev;
+            }
+        }
+        return current;
+    }
+
 public:
     /// <summary>
     /// Конструктор по умолчанию.
@@ -78,11 +102,7 @@ public:
         }
         else
         {
-            Node* current = head;
-            for (int i = 0; i < index - 1; i++)
-            {
-                current = current->next;
-            }
+            Node* current = getNode(index - 1);
             newNode->next = current->next;
             newNode->prev = current;
             if (current->next) current->next->prev = newNode;
@@ -99,20 +119,13 @@ public:
     /// <exception cref="out_of_range">Выбрасывается, если индекс выходит за пределы.</exception>
     void removeAt(int index)
     {
-        if (index < 0 || index >= size) throw std::out_of_range("Index out of range");
-
-        Node* current = head;
-        for (int i = 0; i < index; i++)
-        {
-            current = current->next;
-        }
-
-        if (!current) return;
+        Node* current = getNode(index);
 
         if (current->prev) current->prev->next = current->next;
         if (current->next) current->next->prev = current->prev;
         if (current == head) head = current->next;
         if (current == tail) tail = current->prev;
+
         delete current;
         size--;
     }
@@ -125,13 +138,7 @@ public:
     /// <exception cref="out_of_range">Выбрасывается, если индекс выходит за пределы.</exception>
     T& operator[](const int index)
     {
-        if (index < 0 || index >= size) throw std::out_of_range("Index out of range");
-        Node* current = head;
-        for (int i = 0; i < index; i++)
-        {
-            current = current->next;
-        }
-        return current->data;
+        return getNode(index)->data;
     }
 
     /// <summary>

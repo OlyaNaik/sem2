@@ -23,8 +23,8 @@ struct City
     }
 };
 
-// Функция для вывода регионов с суммарным населением
-void printRegionsByPopulation(List<City>& cities)
+// Функция для подсчета населения по регионам
+map<string, int> calculateRegionPopulation(List<City>& cities)
 {
     map<string, int> regionPopulation; // Словарь для хранения населения по регионам
 
@@ -35,6 +35,12 @@ void printRegionsByPopulation(List<City>& cities)
         regionPopulation[city.region] += city.population;
     }
 
+    return regionPopulation;
+}
+
+// Функция для вывода регионов с суммарным населением
+void printRegionsByPopulation(const map<string, int>& regionPopulation)
+{
     // Сортировка регионов по населению в порядке убывания
     vector<pair<string, int>> sortedRegions(regionPopulation.begin(), regionPopulation.end());
     sort(sortedRegions.begin(), sortedRegions.end(), [](const auto& a, const auto& b)
@@ -47,6 +53,13 @@ void printRegionsByPopulation(List<City>& cities)
     {
         cout << region.first << ": " << region.second << " жителей" << endl;
     }
+}
+
+// Функция для добавления города
+bool addCity(List<City>& cities, const City& city)
+{
+    cities.add(city);
+    return true;
 }
 
 // Функция для удаления городов по указанному региону
@@ -100,12 +113,15 @@ int main()
                 break;
             }
 
-            cities.add(city);
+            addCity(cities, city);
             break;
         }
         case 2: // Вывод регионов по населению
-            printRegionsByPopulation(cities);
+        {
+            auto regionPopulation = calculateRegionPopulation(cities);
+            printRegionsByPopulation(regionPopulation);
             break;
+        }
         case 3: // Удаление городов по региону
         {
             string region;
